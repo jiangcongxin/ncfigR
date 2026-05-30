@@ -6,7 +6,7 @@
 
 `ncfigR` is a small R package for drawing common bioinformatics figure panels from tidy source-data tables.
 
-The package is meant for the stage after analysis, when UMAP coordinates, cell-type proportions, marker values, ligand-receptor tables, trajectory summaries, or benchmark metrics have already been exported and need to be turned into consistent manuscript figures. It does not run a single-cell or spatial analysis pipeline, and it does not replace Seurat, Scanpy, CellChat, or similar tools.
+It helps turn exported analysis results, such as UMAP coordinates, cell-type proportions, marker values, ligand-receptor tables, trajectory summaries, and benchmark metrics, into consistent manuscript-ready figures.
 
 ## What it is useful for
 
