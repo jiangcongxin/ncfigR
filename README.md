@@ -4,23 +4,26 @@
 
 # ncfigR
 
-`ncfigR` 是一个轻量 R 包，用于从整理好的 source-data 表格生成生信论文常用图形面板。它适合单细胞、空间组学、细胞通讯、轨迹分析和方法 benchmark 图，不依赖大型对象，也不替代 Seurat / Scanpy 的完整分析流程。
+`ncfigR` is a small R package for drawing common bioinformatics figure panels from tidy source-data tables.
 
-## 有什么用
+The package is meant for the stage after analysis, when UMAP coordinates, cell-type proportions, marker values, ligand-receptor tables, trajectory summaries, or benchmark metrics have already been exported and need to be turned into consistent manuscript figures. It does not run a single-cell or spatial analysis pipeline, and it does not replace Seurat, Scanpy, CellChat, or similar tools.
 
-- 把 `embedding.tsv`、`marker_matrix.tsv`、`lr_pairs.tsv`、`trajectory.tsv` 等表格快速画成论文图。
-- 统一 UMAP、组成柱状图、marker heatmap、LR heatmap、网络图、trajectory 和 benchmark 图的风格。
-- 用 `patchwork` 组合多 panel 主图。
-- 一次性导出 PDF、SVG、PNG，便于投稿、PPT 和后期编辑。
+## What it is useful for
 
-## 安装
+- Drawing embedding, composition, marker heatmap, ligand-receptor, trajectory, and benchmark panels from plain tables.
+- Keeping colors, themes, legends, and panel spacing consistent across a figure.
+- Combining ggplot panels with `patchwork`.
+- Exporting the same figure as PDF, SVG, and PNG.
+- Keeping plotted data close to auditable source tables instead of hidden inside large analysis objects.
+
+## Installation
 
 ```r
 install.packages("remotes")
 remotes::install_github("jiangcongxin/ncfigR")
 ```
 
-## 最小示例
+## Example
 
 ```r
 library(ncfigR)
@@ -56,30 +59,30 @@ fig <- compose_nc_figure(list(p1, p2), ncol = 2)
 export_figure_bundle(fig, "example_figure", out_dir = "figures/exports")
 ```
 
-## 主要函数
+## Functions
 
-|函数|用途|
+| Function | Purpose |
 |---|---|
-| `plot_embedding_panel()` | UMAP / embedding 散点图 |
-| `plot_composition_panel()` | 细胞组成柱状图 |
-| `plot_marker_heatmap()` | marker heatmap |
-| `plot_lr_heatmap()` | ligand-receptor heatmap |
-| `plot_lr_network()` | ligand-receptor 网络图 |
-| `plot_trajectory_trend()` | pseudotime / trajectory 趋势图 |
-| `plot_benchmark_heatmap()` | 方法比较 heatmap |
-| `compose_nc_figure()` | 组合多 panel 图 |
-| `export_figure_bundle()` | 导出 PDF、SVG、PNG |
+| `plot_embedding_panel()` | UMAP or other 2D embedding scatter plot |
+| `plot_composition_panel()` | Cell composition bar plot |
+| `plot_marker_heatmap()` | Marker heatmap from a feature-by-group table |
+| `plot_lr_heatmap()` | Ligand-receptor heatmap |
+| `plot_lr_network()` | Small ligand-receptor network panel |
+| `plot_trajectory_trend()` | Pseudotime or trajectory trend plot |
+| `plot_benchmark_heatmap()` | Method benchmark heatmap |
+| `compose_nc_figure()` | Combine panels into one figure |
+| `export_figure_bundle()` | Export PDF, SVG, PNG, and optional source manifest |
 
-## 示例数据
+## Input data
 
-包内置了 toy source-data 表格：
+The package uses tidy tables. Toy files are included for testing and examples:
 
 ```r
 system.file("extdata", package = "ncfigR")
 ```
 
-真实项目建议把分析结果整理成同类 tidy table，再传入对应函数。
+For real projects, export the result you want to plot into the same kind of table, check the column names, and pass it to the corresponding plotting function.
 
-## 许可证
+## License
 
 MIT License.
