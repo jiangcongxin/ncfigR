@@ -1,0 +1,6 @@
+^\\.git$
+^\\.github$
+^\\.Rproj\\.user$
+^README\\.Rmd$
+^ncfigR\\.Rproj$
+^\\.DS_Store$
