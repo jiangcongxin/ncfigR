@@ -23,7 +23,7 @@ plot_embedding_panel <- function(data, color_col = "cell_type", palette = NULL,
       dplyr::summarise(x = stats::median(.data$x), y = stats::median(.data$y), .groups = "drop")
     p <- p + ggrepel::geom_text_repel(
       data = centers,
-      ggplot2::aes(label = .data[[color_col]]),
+      ggplot2::aes(x = .data$x, y = .data$y, label = .data[[color_col]]),
       inherit.aes = FALSE,
       size = 2.5,
       min.segment.length = 0
